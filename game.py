@@ -22,59 +22,75 @@ clock = pygame.time.Clock()
 
 
 class GameObjects:
-    '''
+    """
     Docstring для GameObjects
-    '''
-    def __init__(self, body_color: tuple = (255, 0, 0),
-                 position: tuple = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-                 ):
+    """
+
+    def __init__(
+        self,
+        body_color: tuple = (255, 0, 0),
+        position: tuple = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
+    ):
         self.body_color = body_color
         self.position = position
 
     def draw(self):
-        '''
+        """
         Docstring для draw
-        '''
+        """
         pass
 
 
 class Apple(GameObjects):
-    '''
+    """
     Docstring для Apple
-    '''
-    def __init__(self, body_color=(255, 0, 0),
-                 position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))):
-        super().__init__(body_color=(255, 0, 0),
-                         position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)))
+    """ 
+
+    def __init__(
+        self,
+        body_color=(255, 0, 0),
+        position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)),
+    ):
+        super().__init__(
+            body_color=(255, 0, 0), position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
+        )
         self.body_color = (255, 0, 0)
         self.position = self.random_position()
 
     def random_position(self):
-        '''
+        """
         Docstring для random_position
-        '''
-        position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-                    randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
+        """
+        position = (
+            randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+            randint(0, GRID_HEIGHT - 1) * GRID_SIZE,
+        )
         self.position = position
         return position
 
     def draw(self):
-        '''
+        """
         Docstring для draw
-        '''
+        """
         rect = pygame.Rect(self.position, (GRID_SIZE, GRID_SIZE))
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
 
 class Snake(GameObjects):
-    '''
+    """
     Docstring для Snake
-    '''
-    def __init__(self, position=(0, 0), length: int = 1,
-                 positions=None,
-                 direction: tuple = RIGHT, next_direction: tuple = (),
-                 body_color=(0, 255, 0)):
+    """
+
+    def __init__(
+        self,
+        position=(0, 0),
+        length: int = 1,
+        positions=None,
+        direction: tuple = RIGHT,
+        next_direction: tuple = (),
+        body_color=(0, 255, 0),
+    ):
         super().__init__(body_color, position)
         self.length = length
         if positions is None:
@@ -84,25 +100,25 @@ class Snake(GameObjects):
         self.last = self.positions[-1]
 
     def update_direction(self):
-        '''
+        """
         Docstring для update_direction
-        '''
+        """
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
 
     def move(self):
-        '''
+        """
         Docstring для move
-        '''
+        """
         head = self.get_head_position()
 
         dx, dy = self.direction
 
         new_head = (
-                    (head[0] + dx * GRID_SIZE) % SCREEN_WIDTH,
-                    (head[1] + dy * GRID_SIZE) % SCREEN_HEIGHT
-                    )
+            (head[0] + dx * GRID_SIZE) % SCREEN_WIDTH,
+            (head[1] + dy * GRID_SIZE) % SCREEN_HEIGHT,
+        )
 
         if new_head in self.positions:
             self.reset()
@@ -112,17 +128,17 @@ class Snake(GameObjects):
                 self.last = self.positions.pop()
 
     def get_head_position(self):
-        '''
+        """
         Docstring для get_head_position
-        '''
+        """
         return self.positions[0]
 
     def draw(self):
-        '''
+        """
         Docstring для draw
-        '''
+        """
         for position in self.positions[:-1]:
-            rect = (pygame.Rect(position, (GRID_SIZE, GRID_SIZE)))
+            rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
@@ -135,9 +151,9 @@ class Snake(GameObjects):
             pygame.draw.rect(screen, BACKGROUND_COLOR, last_rect)
 
     def reset(self):
-        '''
+        """
         Docstring для reset
-        '''
+        """
         self.positions = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
         self.length = 1
@@ -146,9 +162,9 @@ class Snake(GameObjects):
 
 
 def handle_keys(game_object):
-    '''
+    """
     Docstring для handle_keys
-    '''
+    """
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -165,9 +181,9 @@ def handle_keys(game_object):
 
 
 def main():
-    '''
+    """
     Docstring для main
-    '''
+    """
     pygame.init()
     snake = Snake()
     apple = Apple()
