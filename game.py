@@ -52,7 +52,8 @@ class Apple(GameObjects):
         position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2)),
     ):
         super().__init__(
-            body_color=(255, 0, 0), position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
+            body_color=(255, 0, 0),
+            position=((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
         )
         self.body_color = (255, 0, 0)
         self.position = self.random_position()
