@@ -2,7 +2,7 @@ from random import randint
 import pygame
 
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 600, 480
+SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
 BACKGROUND_COLOR = (0, 0, 0)
 BORDER_COLOR = (100, 200, 200)
 GRID_SIZE = 20
