@@ -3,7 +3,7 @@ import pygame
 
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
-BACKGROUND_COLOR = (0, 0, 0)
+BOARD_BACKGROUND_COLOR = (0, 0, 0)
 BORDER_COLOR = (100, 200, 200)
 GRID_SIZE = 20
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
@@ -149,7 +149,7 @@ class Snake(GameObjects):
 
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
-            pygame.draw.rect(screen, BACKGROUND_COLOR, last_rect)
+            pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
     def reset(self):
         """
@@ -159,7 +159,7 @@ class Snake(GameObjects):
         self.direction = RIGHT
         self.length = 1
         self.next_direction = None
-        screen.fill(BACKGROUND_COLOR)
+        screen.fill(BOARD_BACKGROUND_COLOR)
 
 
 def handle_keys(game_object):
