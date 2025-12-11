@@ -53,8 +53,8 @@ class Apple(GameObjects):
         '''
         Docstring для random_position
         '''
-        position = (randint(0, GRID_WIDTH) * GRID_SIZE,
-                    randint(0, GRID_HEIGHT) * GRID_SIZE)
+        position = (randint(0, GRID_WIDTH - 1) * GRID_SIZE,
+                    randint(0, GRID_HEIGHT - 1) * GRID_SIZE)
         self.position = position
         return position
 
@@ -73,7 +73,7 @@ class Snake(GameObjects):
     '''
     def __init__(self, position=(0, 0), length: int = 1,
                  positions=None,
-                 direction: tuple = RIGHT, next_direction: tuple = None,
+                 direction: tuple = RIGHT, next_direction: tuple = (),
                  body_color=(0, 255, 0)):
         super().__init__(body_color, position)
         self.length = length
